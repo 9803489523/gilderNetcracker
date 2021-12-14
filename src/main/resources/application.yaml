@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/netcrackerdb}
+    username: ${SPRING_DATASOURCE_USERNAME:kriuchkov}
+    password: ${SPRING_DATASOURCE_PASSWORD:1234}
+    data:
+    initialization-mode: always
+    separator: ;;
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: admin
+    ignored: /**
+
+springdoc:
+  swagger-ui:
+    path: "/swagger-ui"
+  api-docs:
+    path: "/api-docs"
+
+server:
+  port: ${PORT:8080}
+
