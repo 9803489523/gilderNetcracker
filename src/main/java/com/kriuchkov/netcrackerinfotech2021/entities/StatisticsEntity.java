@@ -7,9 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "statistics")
@@ -19,8 +17,9 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class StatisticsEntity extends DefaultEntity<Long> {
 
-    @Column(name = "user", nullable = false)
-    private Integer user;
+    @ManyToOne()
+    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "statistics_users_id_fk"))
+    private UserEntity user;
 
     @Column(name = "hours")
     private Integer hours;

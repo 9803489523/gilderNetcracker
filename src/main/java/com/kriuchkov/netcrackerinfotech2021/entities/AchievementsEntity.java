@@ -7,9 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "achievements")
@@ -19,9 +17,11 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class AchievementsEntity extends DefaultEntity<Long> {
 
-    @Column(name = "user")
-    private Integer user;
+    @ManyToOne()
+    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "achievements_users_id_fk"))
+    private UserEntity user;
 
-    @Column(name = "achievement")
-    private Integer achievements;
+    @ManyToOne()
+    @JoinColumn(name = "achievement", foreignKey = @ForeignKey(name = "achievements_list_of_achievements_id_fk"))
+    private ListOfAchievementsEntity achievements;
 }
