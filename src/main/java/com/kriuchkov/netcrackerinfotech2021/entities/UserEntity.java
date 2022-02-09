@@ -13,20 +13,34 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-@DynamicInsert
-@DynamicUpdate
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity extends DefaultEntity<Long> {
-    @Column(name = "username", unique = true, nullable = false)
-    private String username;
 
-    @Column(name = "email", unique = true, nullable = false)
-    private String email;
+    @Column(name = "fullname", nullable = false)
+    private String fullname;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "height")
+    private Double height;
+
+    @Column(name = "weight")
+    private Double weight;
+
+    @Column(name = "training_experience")
+    private Integer training_experience;
+
+    @Column(name = "rating")
+    private Integer rating;
+
+    @Column(name = "avatar")
+    private String avatar;
 }
 

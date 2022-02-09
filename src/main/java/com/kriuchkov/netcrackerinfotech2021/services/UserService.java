@@ -20,7 +20,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserEntity findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public UserEntity findByFullname(String fullname) {
+        return userRepository.findByFullname(fullname);
     }
 }

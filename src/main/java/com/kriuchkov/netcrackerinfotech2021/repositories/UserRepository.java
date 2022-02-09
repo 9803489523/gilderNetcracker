@@ -9,6 +9,6 @@ import java.util.Set;
 
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
-    UserEntity findByUsername(String username);
+    UserEntity findByFullname(String fullname);
     Set<UserEntity> findAll();
 }
