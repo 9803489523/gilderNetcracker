@@ -39,8 +39,5 @@ public class UserEntity extends DefaultEntity<Long> {
 
     @Column(name = "rating")
     private Integer rating;
-
-    @Column(name = "avatar")
-    private String avatar;
 }
 
