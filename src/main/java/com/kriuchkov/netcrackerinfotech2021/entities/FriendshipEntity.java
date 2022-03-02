@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Table(name = "friendship")
 @Getter
 @Setter
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 public class FriendshipEntity extends DefaultEntity<Long> {

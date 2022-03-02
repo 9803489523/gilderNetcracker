@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Table(name = "achievements")
 @Getter
 @Setter
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 public class AchievementsEntity extends DefaultEntity<Long> {

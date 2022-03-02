@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "users")
 @Getter
 @Setter
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEntity extends DefaultEntity<Long> {
@@ -39,5 +41,8 @@ public class UserEntity extends DefaultEntity<Long> {
 
     @Column(name = "rating")
     private Integer rating;
+
+    @Column(name = "link_avatar")
+    private String link_avatar;
 }
 

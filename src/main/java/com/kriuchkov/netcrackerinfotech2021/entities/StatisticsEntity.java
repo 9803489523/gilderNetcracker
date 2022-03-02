@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Table(name = "statistics")
 @Getter
 @Setter
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 public class StatisticsEntity extends DefaultEntity<Long> {

@@ -3,9 +3,9 @@ package com.kriuchkov.netcrackerinfotech2021.controllers;
 import com.kriuchkov.netcrackerinfotech2021.entities.StatisticsEntity;
 import com.kriuchkov.netcrackerinfotech2021.services.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,6 +25,30 @@ public class StatisticsController {
     @GetMapping
     public Set<StatisticsEntity> findAll() {
         return statisticsService.findAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createStatistics(@RequestBody StatisticsEntity statistics){
+        statisticsService.createStatistics(statistics);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody StatisticsEntity statistics){
+        final boolean update = statisticsService.updateStatistics(statistics, id);
+
+        return update
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") long id){
+        final boolean deleted = statisticsService.deleteStatistics(id);
+
+        return deleted
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @GetMapping("/strings")
