@@ -44,7 +44,7 @@ public class EventController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Event> update(@PathVariable Integer id, Event event){
+    public ResponseEntity<Event> update(@PathVariable Integer id, @RequestBody Event event){
         if(eventService.update(id,event))
             return new ResponseEntity<>(event,HttpStatus.OK);
         else

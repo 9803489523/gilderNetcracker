@@ -21,7 +21,4 @@ public class Training {
 
     @Column(name = "training_info")
     private String info;
-
-
-
 }
