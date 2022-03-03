@@ -43,7 +43,7 @@ public class UserService {
     }
 
 
-    public UserEntity findByFullname(String fullname) {
-        return userRepository.findByFullname(fullname);
+    public UserEntity findById(String id) {
+        return userRepository.findById(id);
     }
 }

@@ -20,15 +20,15 @@ import javax.persistence.*;
 public class StatisticsEntity extends DefaultEntity<Long> {
 
     @ManyToOne()
-    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "statistics_users_id_fk"))
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "statistics_users_id_fk"))
     private UserEntity user;
 
     @Column(name = "hours")
     private Integer hours;
 
-    @Column(name = "count_of_exercises_performed")
+    @Column(name = "count_of_exercise_performed")
     private Integer count_of_exercises_performed;
 
-    @Column(name = "day")
+    @Column(name = "date")
     private String day;
 }

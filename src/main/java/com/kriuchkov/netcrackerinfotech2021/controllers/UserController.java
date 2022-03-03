@@ -51,6 +51,10 @@ public class UserController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    @GetMapping("/{id}")
+    public UserEntity findById(@PathVariable(name = "id") String id) {
+        return userService.findById(id);
+    }
 
     @GetMapping("/strings")
     public Set<String> findAllString() {

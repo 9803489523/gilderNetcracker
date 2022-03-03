@@ -20,10 +20,10 @@ import javax.persistence.*;
 public class AchievementsEntity extends DefaultEntity<Long> {
 
     @ManyToOne()
-    @JoinColumn(name = "user", foreignKey = @ForeignKey(name = "achievements_users_id_fk"))
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "achievements_user_entity_id_fk"))
     private UserEntity user;
 
     @ManyToOne()
-    @JoinColumn(name = "achievement", foreignKey = @ForeignKey(name = "achievements_list_of_achievements_id_fk"))
+    @JoinColumn(name = "achievement_id", foreignKey = @ForeignKey(name = "achievements_achievements_list_id_fk"))
     private ListOfAchievementsEntity achievements;
 }

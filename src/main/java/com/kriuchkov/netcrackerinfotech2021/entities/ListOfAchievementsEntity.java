@@ -10,7 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "list_of_achievements")
+@Table(name = "achievements_list")
 @Getter
 @Setter
 @DynamicInsert
@@ -24,6 +24,6 @@ public class ListOfAchievementsEntity extends DefaultEntity<Long> {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "icon")
+    @Column(name = "icon_link")
     private String icon;
 }

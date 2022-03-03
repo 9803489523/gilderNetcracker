@@ -9,40 +9,59 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user_entity")
 @Getter
 @Setter
 @DynamicInsert
 @DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity extends DefaultEntity<Long> {
+public class UserEntity {
 
-    @Column(name = "fullname", nullable = false)
-    private String fullname;
+    @Id
+    @Column(name = "id")
+    private String id;
 
-    @Column(name = "gender")
-    private String gender;
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "email_constraint")
+    private String email_constraint;
 
-    @Column(name = "height")
-    private Double height;
+    @Column(name = "email_verified")
+    private Boolean email_verified;
 
-    @Column(name = "weight")
-    private Double weight;
+    @Column(name = "enabled")
+    private Boolean enabled;
 
-    @Column(name = "training_experience")
-    private Integer training_experience;
+    @Column(name = "federation_link")
+    private String federation_link;
 
-    @Column(name = "rating")
-    private Integer rating;
+    @Column(name = "first_name")
+    private String first_name;
 
-    @Column(name = "link_avatar")
-    private String link_avatar;
+    @Column(name = "last_name")
+    private String last_name;
+
+    @Column(name = "realm_id")
+    private String realm_id;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "created_timestamp")
+    private String created_timestamp;
+
+    public void setId(Long id) {
+        this.id = String.valueOf(id);
+    }
+
+    public String getId() {
+        return id;
+    }
 }
 

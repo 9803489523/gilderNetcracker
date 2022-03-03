@@ -21,6 +21,10 @@ spring:
       password: admin
       roles: admin
     ignored: /**
+  mvc:
+    view:
+      prefix: "/WEB-INF/jsp/"
+      suffix: ".jsp"
 
 springdoc:
   swagger-ui:
