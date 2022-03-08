@@ -5,14 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "events")
@@ -35,6 +35,25 @@ public class Event {
     @Column(name = "cycle_end")
     private LocalDate cycleEnd;
 
-    @Column(name = "day_shorts")
+    @Column(name = "day_repeat")
     private String day;
+
+    @ManyToMany(cascade = {
+            CascadeType.DETACH,
+            CascadeType.MERGE,
+            CascadeType.PERSIST,
+            CascadeType.REFRESH
+    })
+    @JoinColumn(name = "ts_id")
+    private List<TrainingSet> trainingSets;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "parent_event_id",referencedColumnName = "event_id")
+    private Event event;
+
+    @OneToMany(mappedBy = "event")
+    private List<Event> events;
+
+    @OneToMany(mappedBy = "eventUser")
+    private List<UserEvent> userEvents;
 }

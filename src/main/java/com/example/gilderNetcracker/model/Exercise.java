@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -24,4 +25,7 @@ public class Exercise {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "exercise",cascade = CascadeType.ALL)
+    private List<TrainingSet> trainingSets;
 }
