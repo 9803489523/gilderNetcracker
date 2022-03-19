@@ -27,12 +27,12 @@ export default class AppNavbar extends Component {
                             <ul>
                                 <li>
                                     <a href="#">
-                                        <span className="icon"><ion-icon name="logo-apple"/></span>
+                                        <span className="icon"><ion-icon name="barbell-outline"/></span>
                                         <span className="title">Beautiful project</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="/">
                                         <span className="icon"><ion-icon name="person-circle-outline"/></span>
                                         <span className="title">Личный кабинет</span>
                                     </a>

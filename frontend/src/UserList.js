@@ -40,8 +40,10 @@ class UserList extends Component {
 
         const userList = users.map(user => {
             return <tr key={user.id}>
-                <td style={{whiteSpace: 'nowrap'}}>{user.username}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{user.id}</td>
+                <td>{user.username}</td>
                 <td>{user.email}</td>
+                <td>{user.enabled}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/api/users/" + user.id}>Edit</Button>
@@ -60,19 +62,17 @@ class UserList extends Component {
                             <div className="cardHeader">
                                 <h2>Recent Users</h2>
                                 <a href="#" className="btn">View All</a>
+                                <Button color="success" tag={Link} to="/api/users/new">Add User</Button>
                             </div>
-                            <div className="cardHeader">
-                                <div className="float-right">
-                                    <Button color="success" tag={Link} to="/api/users/new">Add User</Button>
-                                </div>
-                            </div>
-                            <table id="users">
+                            <table>
                                 <thead>
-                                <tr>
-                                    <th width="30%">Username</th>
-                                    <th width="30%">Email</th>
-                                    <th width="40%">Actions</th>
-                                </tr>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Username</td>
+                                        <td>Email</td>
+                                        <td>Enabled?</td>
+                                        <td>Actions</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 {userList}

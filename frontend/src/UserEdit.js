@@ -59,11 +59,6 @@ class UserEdit extends Component {
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="id">ID</Label>
-                        <Input type="text" name="id" id="id" value={item.id || ''}
-                               onChange={this.handleChange} autoComplete="id"/>
-                    </FormGroup>
-                    <FormGroup>
                         <Label for="username">Username</Label>
                         <Input type="text" name="username" id="username" value={item.username || ''}
                                onChange={this.handleChange} autoComplete="username"/>
