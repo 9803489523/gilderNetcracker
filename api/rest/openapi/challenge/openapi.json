@@ -1,0 +1,564 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Description",
+    "version": "1.0",
+    "title": "Beautiful project API",
+    "contact": {
+      "name": "Ekaterina Selivanova",
+      "url": "url",
+      "email": "katseliv@yandex.ru"
+    },
+    "license": {
+      "name": "Apache License Version 2.0",
+      "url": "https://github.com/springfox/springfox/blob/master/LICENSE"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "challenge-record-controller",
+      "description": "Challenge Record Controller"
+    },
+    {
+      "name": "voting-controller",
+      "description": "Voting Controller"
+    }
+  ],
+  "paths": {
+    "/v1/challenges/create": {
+      "post": {
+        "tags": [
+          "challenge-record-controller"
+        ],
+        "summary": "createChallenge",
+        "operationId": "createChallengeUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChallengeRecordCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ChallengeRecordDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/challenges/edit/{challengeId}": {
+      "put": {
+        "tags": [
+          "challenge-record-controller"
+        ],
+        "summary": "editChallenge",
+        "operationId": "editChallengeUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "description": "challengeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChallengeRecordDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/challenges/{challengeId}": {
+      "get": {
+        "tags": [
+          "challenge-record-controller"
+        ],
+        "summary": "getChallenge",
+        "operationId": "getChallengeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "description": "challengeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ChallengeRecordDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "challenge-record-controller"
+        ],
+        "summary": "deleteChallenge",
+        "operationId": "deleteChallengeUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "description": "challengeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/v1/challenges/{challengeId}/complete": {
+      "put": {
+        "tags": [
+          "challenge-record-controller"
+        ],
+        "summary": "completeChallenge",
+        "operationId": "completeChallengeUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "description": "challengeId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/voting/edit/{votingId}": {
+      "put": {
+        "tags": [
+          "voting-controller"
+        ],
+        "summary": "editVoting",
+        "operationId": "editVotingUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VotingDto"
+            }
+          },
+          {
+            "name": "votingId",
+            "in": "path",
+            "description": "votingId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/voting/start": {
+      "post": {
+        "tags": [
+          "voting-controller"
+        ],
+        "summary": "startVoting",
+        "operationId": "startVotingUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VotingCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/VotingDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/voting/vote": {
+      "post": {
+        "tags": [
+          "voting-controller"
+        ],
+        "summary": "vote",
+        "operationId": "voteUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "dto",
+            "description": "dto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VoteDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/v1/voting/{votingId}": {
+      "get": {
+        "tags": [
+          "voting-controller"
+        ],
+        "summary": "getVoting",
+        "operationId": "getVotingUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "votingId",
+            "in": "path",
+            "description": "votingId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/VotingDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "voting-controller"
+        ],
+        "summary": "deleteVoting",
+        "operationId": "deleteVotingUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "votingId",
+            "in": "path",
+            "description": "votingId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ChallengeRecordCreateDto": {
+      "type": "object",
+      "properties": {
+        "amount_of_points": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "attacker_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "catcher_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "text_of_challenge": {
+          "type": "string"
+        }
+      },
+      "title": "ChallengeRecordCreateDto"
+    },
+    "ChallengeRecordDto": {
+      "type": "object",
+      "properties": {
+        "amount_of_points": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "attacker_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "catcher_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "deadline": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_completed": {
+          "type": "boolean"
+        },
+        "text_of_challenge": {
+          "type": "string"
+        }
+      },
+      "title": "ChallengeRecordDto"
+    },
+    "VoteDto": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "voting_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "VoteDto"
+    },
+    "VotingCreateDto": {
+      "type": "object",
+      "properties": {
+        "challenge_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "end_datetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "start_datetime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "VotingCreateDto"
+    },
+    "VotingDto": {
+      "type": "object",
+      "properties": {
+        "challenge_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "end_datetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "start_datetime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "VotingDto"
+    }
+  }
+}
