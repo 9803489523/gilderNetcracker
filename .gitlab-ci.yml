@@ -6,3 +6,8 @@
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
 - test
+- build
+- deploy
+
+"dummy test job":
+  script: "echo 'add tests please'"
