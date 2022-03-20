@@ -1,0 +1,30 @@
+spring:
+  application.name: ${APPLICATION_NAME:spring-security-keycloak}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${NEWS_DATASOURCE_URL}
+    username: ${NEWS_DATASOURCE_USERNAME}
+    password: ${NEWS_DATASOURCE_PASSWORD}
+
+    data:
+    initialization-mode: always
+    separator: ;;
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+springdoc:
+  swagger-ui:
+    path: "/swagger-ui"
+  api-docs:
+    path: "/api-docs"
+
+server:
+  port: ${PORT:8080}

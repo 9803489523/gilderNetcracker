@@ -13,22 +13,23 @@ import java.util.List;
  * @author Alexanrd Spaskin
  */
 @RestController
-public class CommentComtroller {
+@RequestMapping("api/v1/comment")
+public class CommentController {
 
     private final CommentService commentService;
 
     @Autowired
-    public CommentComtroller(CommentService commentService){
+    public CommentController(CommentService commentService){
         this.commentService = commentService;
     }
 
-    @PostMapping(value = "/comment")
+    @PostMapping
     public ResponseEntity<?> create(@RequestBody Comment comment){
         commentService.create(comment);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/comment")
+    @GetMapping
     public ResponseEntity<List<Comment>> read(){
         final  List<Comment> commentList = commentService.readAll();
 
@@ -37,7 +38,7 @@ public class CommentComtroller {
                 : new ResponseEntity<>(commentList, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/comment/{id}")
+    @GetMapping(value = "/{id}")
     public  ResponseEntity<Comment> read(@PathVariable(name = "id") int id){
         final Comment comment = commentService.read(id);
 
@@ -46,7 +47,7 @@ public class CommentComtroller {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(value = "/comment/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody Comment comment){
         final boolean update = commentService.update(comment, id);
 
@@ -55,7 +56,7 @@ public class CommentComtroller {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/comment/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
         final boolean deleted = commentService.delete(id);
 
