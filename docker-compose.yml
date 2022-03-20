@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  app:
+    container_name: springboot-postgresql
+    image: personal_info1
+    ports:
+      - "8080:8080"
+    environment:
+      - PERSONAL_INFO_DATASOURCE_URL=jdbc:postgresql://postgres:5432/netcrackerdb
+      - PERSONAL_INFO_DATASOURCE_USERNAME=kriuchkov
+      - PERSONAL_INFO_DATASOURCE_PASSWORD=1234
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: "netcrackerdb"
+      POSTGRES_USER: "kriuchkov"
+      POSTGRES_PASSWORD: "1234"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
