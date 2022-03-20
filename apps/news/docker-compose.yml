@@ -1,17 +1,23 @@
 version: "3.9"
 services:
+  app:
+    container_name: news_servise
+    image: news
+    ports:
+      - "8080:8080"
+    environment:
+      - NEWS_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - NEWS_DATASOURCE_USERNAME=postgresuser
+      - NEWS_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres
-    restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: "postgres"
       POSTGRES_USER: "postgresuser"
       POSTGRES_PASSWORD: "postgres"
       PGDATA: "/var/lib/postgresql/data/pgdata"
-    volumes:
-      - ./src/main/resources/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-      - ./src/main/resources/db/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
-
-      - .:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"

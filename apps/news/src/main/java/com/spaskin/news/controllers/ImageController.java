@@ -13,7 +13,9 @@ import java.util.List;
  * @author Alexanrd Spaskin
  */
 @RestController
+@RequestMapping("api/v1/image")
 public class ImageController {
+
     private final ImageService imageService;
 
     @Autowired
@@ -21,13 +23,13 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @PostMapping(value = "/image")
+    @PostMapping
     public ResponseEntity<?> cread(@RequestBody Image image){
         imageService.create(image);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/image")
+    @GetMapping
     public ResponseEntity<List<Image>> read(){
         final List<Image> imageList = imageService.readAll();
 
@@ -36,7 +38,7 @@ public class ImageController {
                 : new ResponseEntity<>(imageList, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/image/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Image> read(@PathVariable(name = "id") String id){
         final Image image = imageService.read(id);
 
@@ -45,7 +47,7 @@ public class ImageController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(value = "/image/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") String id, @RequestBody Image image){
         final boolean update = imageService.update(image, id);
 
@@ -54,7 +56,7 @@ public class ImageController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/image/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") String id){
         final boolean deleted = imageService.delete(id);
 

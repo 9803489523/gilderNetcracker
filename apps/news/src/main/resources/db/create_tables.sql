@@ -1,34 +1,55 @@
-create table if not exists news
+create table news
 (
-    id_news        SERIAL primary key,
-    title          varchar(200),
-    content        text,
-    create_at      timestamp without time zone NOT NULL,
-    id_user        int,
-    link_a_source  varchar(500)
-);
-CREATE SEQUENCE news_id_seq START WITH 3 INCREMENT BY 1;
-
-create table if not exists comment
-(
-    id_comment     int primary key,
-    text           varchar(1000),
-    create_at      date,
-    id_news        int references news(id_news),
-    id_user        int
+    id_news       serial
+        primary key,
+    content       varchar(255),
+    create_at     timestamp,
+    id_author     bigint,
+    link_a_source varchar(255),
+    title         varchar(255)
 );
 
-create table if not exists grade
+alter table news
+    owner to postgresuser;
+
+create table comment
 (
-    id_news        int references news(id_news) NOT NULL,
-    id_user        int NOT NULL,
-    grade          int,
-    PRIMARY KEY (id_news, id_user)
+    id_comment serial
+        primary key,
+    create_at  timestamp,
+    id_user    bigint,
+    id_news    integer
+        constraint fkbptqmm7bn3alb6htitgfrlt95
+            references news,
+    text       varchar(255)
 );
 
-create table if not exists image
+alter table comment
+    owner to postgresuser;
+
+create table grade
 (
-    name           varchar(255) primary key,
-    id_news        int references news(id_news)
+    id_news integer not null
+        constraint fkou3r4pxgpp34utm7t48jg7slw
+            references news,
+    id_user integer not null,
+    grade   boolean,
+    primary key (id_news, id_user)
 );
+
+alter table grade
+    owner to postgresuser;
+
+create table image
+(
+    name    varchar(255) not null
+        primary key,
+    id_news integer
+        constraint fknkilp3hduuv9n2ihwglasla3f
+            references news
+);
+
+alter table image
+    owner to postgresuser;
+
 

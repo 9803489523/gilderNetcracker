@@ -14,7 +14,9 @@ import java.util.List;
  * @author Alexanrd Spaskin
  */
 @RestController
+@RequestMapping("api/v1/grade")
 public class GradeController {
+
     private final GradeService gradeService;
 
     @Autowired
@@ -22,13 +24,13 @@ public class GradeController {
         this.gradeService = gradeService;
     }
 
-    @PostMapping(value = "/grade")
+    @PostMapping
     public ResponseEntity<?> cread(@RequestBody Grade grade){
         gradeService.create(grade);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/grade")
+    @GetMapping
     public ResponseEntity<List<Grade>> read(){
         final List<Grade> gradeList = gradeService.readAll();
 
@@ -37,7 +39,7 @@ public class GradeController {
                 : new ResponseEntity<>(gradeList, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/grade/{idNews}/{idUser}")
+    @GetMapping(value = "/{idNews}/{idUser}")
     public ResponseEntity<Grade> read(@PathVariable(name = "idNews") Integer idNews, @PathVariable(name = "idUser") Integer idUser){
         final Grade grade = gradeService.read(new GradeKey(idNews, idUser));
 
@@ -46,7 +48,7 @@ public class GradeController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(value = "/grade/{idNews}/{idUser}")
+    @PutMapping(value = "/{idNews}/{idUser}")
     public ResponseEntity<?> update(@PathVariable(name = "idNews") Integer idNews, @PathVariable(name = "idUser") Integer idUser, @RequestBody Grade grade){
         final boolean update = gradeService.update(grade, new GradeKey(idNews, idUser));
 
@@ -55,7 +57,7 @@ public class GradeController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/grade/{idNews}/{idUser}")
+    @DeleteMapping(value = "/{idNews}/{idUser}")
     public ResponseEntity<?> delete(@PathVariable(name = "idNews") Integer idNews, @PathVariable(name = "idUser") Integer idUser){
         final boolean deleted = gradeService.delete(new GradeKey(idNews, idUser));
 

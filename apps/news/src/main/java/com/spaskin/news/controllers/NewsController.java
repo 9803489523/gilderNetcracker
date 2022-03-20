@@ -13,6 +13,8 @@ import java.util.List;
  * @author Alexanrd Spaskin
  */
 @RestController
+@RequestMapping("api/v1/news")
+@CrossOrigin("*")
 public class NewsController {
 
     private final NewsService newsService;
@@ -22,13 +24,13 @@ public class NewsController {
         this.newsService = newsService;
     }
 
-    @PostMapping(value = "/news")
+    @PostMapping
     public ResponseEntity<?> create(@RequestBody News news){
         newsService.create(news);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "news")
+    @GetMapping
     public ResponseEntity<List<News>> read(){
         final List<News> newsList = newsService.readAll();
 
@@ -37,7 +39,7 @@ public class NewsController {
                 : new ResponseEntity<>(newsList, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/news/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<News> read(@PathVariable(name = "id") int id){
         final News news = newsService.read(id);
 
@@ -46,7 +48,7 @@ public class NewsController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(value = "/news/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody News news){
         final boolean update = newsService.update(news, id);
 
@@ -55,7 +57,7 @@ public class NewsController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/news/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
         final boolean deleted = newsService.delete(id);
 
