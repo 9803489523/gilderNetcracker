@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: postgresql
+  - changeSet:
+      id: PBP-001-202202111729
+      author: EkaterinaSelivanova
+      comment: Create Initial DB Structure
+      changes:
+        - sqlFile:
+            path: PBP-001-202202111729.sql
+            relativeToChangelogFile: true
