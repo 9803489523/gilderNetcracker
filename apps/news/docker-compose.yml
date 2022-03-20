@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgresuser"
+      POSTGRES_PASSWORD: "postgres"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./src/main/resources/db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./src/main/resources/db/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+
+      - .:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
