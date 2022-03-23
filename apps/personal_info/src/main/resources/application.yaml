@@ -1,0 +1,48 @@
+spring:
+  application.name: ${APPLICATION_NAME:spring-security-keycloak}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/keycloak_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    data:
+    initialization-mode: always
+    separator: ;;
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: admin
+    ignored: /**
+  mvc:
+    view:
+      prefix: "/WEB-INF/jsp/"
+      suffix: ".jsp"
+
+springdoc:
+  swagger-ui:
+    path: "/swagger-ui"
+  api-docs:
+    path: "/api-docs"
+
+keycloak:
+  auth-server-url: http://localhost:8484/auth
+  realm: my_realm
+  resource: my_client
+  public-client: true
+  security-constraints:
+    - authRoles:
+        - uma_authorization
+      securityCollections:
+        - patterns:
+            - /api/*
+server:
+  port: ${PORT:8080}
+
