@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  appPersonalInfo:
+    container_name: springboot-postgresql
+    image: registry.gitlab.com/netcracker-infotech2021/beautiful-project/personal_info:0.0.1
+    ports:
+      - "8080:8080"
+    environment:
+      - PERSONAL_INFO_DATASOURCE_URL=jdbc:postgresql://postgresPersonalInfo:5432/netcrackerdb
+      - PERSONAL_INFO_DATASOURCE_USERNAME=kriuchkov
+      - PERSONAL_INFO_DATASOURCE_PASSWORD=1234
+    depends_on:
+      - postgresPersonalInfo
+
+  postgresPersonalInfo:
+    image: postgres
+#    ports:
+#      - "5433:5432"
+    environment:
+      POSTGRES_DB: "netcrackerdb"
+      POSTGRES_USER: "kriuchkov"
+      POSTGRES_PASSWORD: "1234"
+      PGDATA: "/var/lib/postgresql/data/pgdata"

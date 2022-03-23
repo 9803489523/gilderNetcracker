@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  appGilder:
+    container_name: gilder_service
+    image: registry.gitlab.com/netcracker-infotech2021/beautiful-project/gilder:0.0.1
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresGilder:5432/gilder
+      - SPRING_DATASOURCE_USERNAME=POSTGRES
+      - SPRING_DATASOURCE_PASSWORD=1234
+    depends_on:
+      - postgresGilder
+
+  postgresGilder:
+    image: postgres
+#    ports:
+#      - "5433:5432"
+    environment:
+      POSTGRES_DB: "gilder"
+      POSTGRES_USER: "POSTGRES"
+      POSTGRES_PASSWORD: "1234"
+#      PGDATA: "/var/lib/postgresql/data/pgdata"
