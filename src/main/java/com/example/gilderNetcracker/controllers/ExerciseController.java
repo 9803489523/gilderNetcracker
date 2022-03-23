@@ -1,4 +1,4 @@
-package com.example.gilderNetcracker.controllers.rest;
+package com.example.gilderNetcracker.controllers;
 
 import com.example.gilderNetcracker.model.Exercise;
 import com.example.gilderNetcracker.model.Training;

@@ -1,4 +1,4 @@
-package com.example.gilderNetcracker.controllers.rest;
+package com.example.gilderNetcracker.controllers;
 
 import com.example.gilderNetcracker.model.Keys.UserEventPK;
 import com.example.gilderNetcracker.model.UserEvent;

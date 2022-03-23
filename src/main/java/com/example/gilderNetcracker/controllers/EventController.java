@@ -1,4 +1,4 @@
-package com.example.gilderNetcracker.controllers.rest;
+package com.example.gilderNetcracker.controllers;
 
 import com.example.gilderNetcracker.model.Event;
 import com.example.gilderNetcracker.services.EventService;
