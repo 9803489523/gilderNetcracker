@@ -26,6 +26,6 @@ public class Exercise {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "exercise",cascade = CascadeType.ALL)
-    private List<TrainingSet> trainingSets;
+    //@OneToMany(mappedBy = "exercise",cascade = CascadeType.ALL)
+    //private List<TrainingSet> trainingSets;
 }

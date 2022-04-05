@@ -1,6 +1,8 @@
 package com.example.gilderNetcracker.controllers;
 
+import com.example.gilderNetcracker.model.Keys.UserEventPK;
 import com.example.gilderNetcracker.model.Training;
+import com.example.gilderNetcracker.model.UserEvent;
 import com.example.gilderNetcracker.services.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/training")
+@RequestMapping("/v1/trainings")
 public class TrainingController {
 
     private final TrainingService trainingService;
@@ -26,6 +28,16 @@ public class TrainingController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Training> readById(
+            @PathVariable Integer id
+    ){
+        if(!trainingService.existById(id))
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(trainingService.getById(id),HttpStatus.OK);
     }
 
     @GetMapping

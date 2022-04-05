@@ -1,5 +1,6 @@
 package com.example.gilderNetcracker.model;
 
+import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +16,15 @@ import java.util.List;
 @Table(name = "training_set")
 public class TrainingSet{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ts_id")
-    private int id;
+    @EmbeddedId
+    private TrainingSetPK id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "training_id",referencedColumnName = "training_id")
+    @JoinColumn(name = "training_id",insertable = false,updatable = false, referencedColumnName = "training_id")
     private Training training;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "exercise_id",referencedColumnName = "exercise_id")
+    @JoinColumn(name = "exercise_id",insertable = false,updatable = false, referencedColumnName = "exercise_id")
     private Exercise exercise;
 
     @Column(name = "number_of_exercise",nullable = false)

@@ -1,5 +1,6 @@
 package com.example.gilderNetcracker.controllers;
 
+import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import com.example.gilderNetcracker.model.TrainingSet;
 import com.example.gilderNetcracker.services.TSService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/trainingSet")
+@RequestMapping("/v1/trainingsSet")
 public class TSController {
 
     private final TSService tsService;
@@ -28,6 +29,20 @@ public class TSController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/{trainingId}/{exerciseId}")
+    public ResponseEntity<TrainingSet> readById(
+            @PathVariable Integer trainingId,
+            @PathVariable Integer exerciseId
+    ){
+        TrainingSetPK id=new TrainingSetPK();
+        id.setTrainingId(trainingId);
+        id.setExerciseId(exerciseId);
+        if(!tsService.existById(id))
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(tsService.getById(id),HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<TrainingSet>> read(){
         if(tsService.read().isEmpty())
@@ -36,16 +51,27 @@ public class TSController {
             return new ResponseEntity<>(tsService.read(),HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<TrainingSet> update(@PathVariable Integer id,@RequestBody TrainingSet trainingSet){
+    @PutMapping("/{trainingId}/{exerciseId}")
+    public ResponseEntity<TrainingSet> update(
+            @PathVariable Integer trainingId,
+            @PathVariable Integer exerciseId,
+            @RequestBody TrainingSet trainingSet){
+        TrainingSetPK id=new TrainingSetPK();
+        id.setTrainingId(trainingId);
+        id.setExerciseId(exerciseId);
         if(tsService.update(id,trainingSet))
             return new ResponseEntity<>(HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<TrainingSet> delete(@PathVariable Integer id){
+    @DeleteMapping("/{trainingId}/{exerciseId}")
+    public ResponseEntity<TrainingSet> delete(
+            @PathVariable Integer trainingId,
+            @PathVariable Integer exerciseId){
+        TrainingSetPK id=new TrainingSetPK();
+        id.setTrainingId(trainingId);
+        id.setExerciseId(exerciseId);
         if(tsService.delete(id))
             return new ResponseEntity<>(HttpStatus.OK);
         else

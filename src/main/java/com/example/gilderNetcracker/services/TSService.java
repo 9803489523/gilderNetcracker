@@ -1,5 +1,6 @@
 package com.example.gilderNetcracker.services;
 
+import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import com.example.gilderNetcracker.model.TrainingSet;
 import com.example.gilderNetcracker.repos.TSRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,15 @@ public class TSService {
             return false;
     }
 
-    public boolean update(Integer id, TrainingSet trainingSet){
+    public boolean existById(TrainingSetPK id){
+        return tsRepo.existsById(id);
+    }
+
+    public TrainingSet getById(TrainingSetPK id){
+        return tsRepo.getById(id);
+    }
+
+    public boolean update(TrainingSetPK id, TrainingSet trainingSet){
         if(tsRepo.existsById(id)&&trainingSet!=null){
             trainingSet.setId(id);
             tsRepo.save(trainingSet);
@@ -36,7 +45,7 @@ public class TSService {
             return false;
     }
 
-    public boolean delete(Integer id){
+    public boolean delete(TrainingSetPK id){
         if(tsRepo.existsById(id)){
             tsRepo.deleteById(id);
             return true;

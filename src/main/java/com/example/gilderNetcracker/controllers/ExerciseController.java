@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/exercise")
+@RequestMapping("/v1/exercises")
 public class ExerciseController {
 
     private final ExerciseService exerciseService;
@@ -30,6 +30,16 @@ public class ExerciseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Exercise> readById(
+            @PathVariable Integer id
+    ){
+        if(!exerciseService.existById(id))
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(exerciseService.getById(id),HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Exercise>> read(){
         if(exerciseService.read().isEmpty())
@@ -45,8 +55,8 @@ public class ExerciseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Exercise> update(@PathVariable @Validated Integer id, @RequestBody Exercise training){
-        if(exerciseService.update(id,training))
+    public ResponseEntity<Exercise> update(@PathVariable @Validated Integer id, @RequestBody Exercise exercise){
+        if(exerciseService.update(id,exercise))
             return new ResponseEntity<>(HttpStatus.OK);
         else{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -44,7 +44,10 @@ public class Event {
             CascadeType.PERSIST,
             CascadeType.REFRESH
     })
-    @JoinColumn(name = "ts_id")
+    @JoinColumns({
+         @JoinColumn(name = "training_id",insertable = false,updatable = false),
+         @JoinColumn(name = "exercise_id",insertable = false,updatable = false)
+    })
     private List<TrainingSet> trainingSets;
 
     @ManyToOne(cascade = CascadeType.MERGE)

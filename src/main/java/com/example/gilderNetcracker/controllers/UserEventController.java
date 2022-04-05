@@ -1,6 +1,8 @@
 package com.example.gilderNetcracker.controllers;
 
+import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import com.example.gilderNetcracker.model.Keys.UserEventPK;
+import com.example.gilderNetcracker.model.TrainingSet;
 import com.example.gilderNetcracker.model.UserEvent;
 import com.example.gilderNetcracker.repos.UserEventRepo;
 import com.example.gilderNetcracker.services.UserEventService;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/userEvent")
+@RequestMapping("/v1/userEvents")
 public class UserEventController {
 
     private final UserEventService userEventService;
@@ -29,6 +31,20 @@ public class UserEventController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/{userId}/{eventId}")
+    public ResponseEntity<UserEvent> readById(
+            @PathVariable Integer userId,
+            @PathVariable Integer eventId
+    ){
+        UserEventPK id=new UserEventPK();
+        id.setUserId(userId);
+        id.setEventId(eventId);
+        if(!userEventService.existById(id))
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(userEventService.getById(id),HttpStatus.OK);
     }
 
     @GetMapping

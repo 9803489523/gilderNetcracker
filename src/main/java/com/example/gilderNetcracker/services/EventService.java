@@ -1,6 +1,7 @@
 package com.example.gilderNetcracker.services;
 
 import com.example.gilderNetcracker.model.Event;
+import com.example.gilderNetcracker.model.Training;
 import com.example.gilderNetcracker.repos.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,14 @@ public class EventService {
             eventRepo.save(event);
             return true;
         }
+    }
+
+    public boolean existById(Integer id){
+        return eventRepo.existsById(id);
+    }
+
+    public Event getById(Integer id){
+        return eventRepo.getById(id);
     }
 
     public boolean delete(Integer id){

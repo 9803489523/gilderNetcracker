@@ -23,6 +23,6 @@ public class Training {
     @Column(name = "training_info")
     private String info;
 
-    @OneToMany(mappedBy = "training",cascade = CascadeType.ALL)
-    private List<TrainingSet> trainingSets;
+    //@OneToMany(mappedBy = "training",cascade = CascadeType.ALL)
+    //private List<TrainingSet> trainingSets;
 }

@@ -1,6 +1,7 @@
 package com.example.gilderNetcracker.services;
 
 import com.example.gilderNetcracker.model.Exercise;
+import com.example.gilderNetcracker.model.Training;
 import com.example.gilderNetcracker.repos.ExerciseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,14 @@ public class ExerciseService {
             exerciseRepo.save(exercise);
             return true;
         }
+    }
+
+    public boolean existById(Integer id){
+        return exerciseRepo.existsById(id);
+    }
+
+    public Exercise getById(Integer id){
+        return exerciseRepo.getById(id);
     }
 
     public boolean delete(Integer id){

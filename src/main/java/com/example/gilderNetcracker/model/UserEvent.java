@@ -19,8 +19,8 @@ public class UserEvent {
     @EmbeddedId
     private UserEventPK id;
     
-    @Column(name = "user_id",insertable = false,updatable = false)
-    private int userId;
+    //@Column(name = "user_id",insertable = false,updatable = false)
+    //private int userId;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "event_id",insertable = false,updatable = false,referencedColumnName = "event_id")

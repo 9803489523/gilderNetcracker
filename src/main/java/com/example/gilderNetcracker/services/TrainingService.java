@@ -1,6 +1,8 @@
 package com.example.gilderNetcracker.services;
 
+import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import com.example.gilderNetcracker.model.Training;
+import com.example.gilderNetcracker.model.TrainingSet;
 import com.example.gilderNetcracker.repos.TrainingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,14 @@ public class TrainingService {
             return true;
         }
         return false;
+    }
+
+    public boolean existById(Integer id){
+        return trainingRepo.existsById(id);
+    }
+
+    public Training getById(Integer id){
+        return trainingRepo.getById(id);
     }
 
     public boolean update(Integer id,Training training){

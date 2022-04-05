@@ -1,6 +1,8 @@
 package com.example.gilderNetcracker.services;
 
+import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import com.example.gilderNetcracker.model.Keys.UserEventPK;
+import com.example.gilderNetcracker.model.TrainingSet;
 import com.example.gilderNetcracker.model.UserEvent;
 import com.example.gilderNetcracker.repos.UserEventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,14 @@ public class UserEventService {
 
     public List<UserEvent> read(){
         return userEventRepo.findAll();
+    }
+
+    public boolean existById(UserEventPK id){
+        return userEventRepo.existsById(id);
+    }
+
+    public UserEvent getById(UserEventPK id){
+        return userEventRepo.getById(id);
     }
 
     public boolean update(UserEventPK id, UserEvent userEvent){
