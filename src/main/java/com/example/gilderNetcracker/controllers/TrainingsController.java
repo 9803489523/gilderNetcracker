@@ -1,8 +1,6 @@
 package com.example.gilderNetcracker.controllers;
 
-import com.example.gilderNetcracker.model.Keys.UserEventPK;
 import com.example.gilderNetcracker.model.Training;
-import com.example.gilderNetcracker.model.UserEvent;
 import com.example.gilderNetcracker.services.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/trainings")
-public class TrainingController {
+@RequestMapping("/v3/trainings")
+public class TrainingsController {
 
     private final TrainingService trainingService;
 
     @Autowired
-    public TrainingController(TrainingService trainingService) {
+    public TrainingsController(TrainingService trainingService) {
         this.trainingService = trainingService;
     }
 
@@ -42,8 +40,6 @@ public class TrainingController {
 
     @GetMapping
     public ResponseEntity<List<Training>> read(){
-        if(trainingService.read().isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(trainingService.read(),HttpStatus.OK);
     }
 

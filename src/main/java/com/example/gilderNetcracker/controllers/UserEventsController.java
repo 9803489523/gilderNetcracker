@@ -1,12 +1,8 @@
 package com.example.gilderNetcracker.controllers;
 
-import com.example.gilderNetcracker.model.Keys.TrainingSetPK;
 import com.example.gilderNetcracker.model.Keys.UserEventPK;
-import com.example.gilderNetcracker.model.TrainingSet;
 import com.example.gilderNetcracker.model.UserEvent;
-import com.example.gilderNetcracker.repos.UserEventRepo;
 import com.example.gilderNetcracker.services.UserEventService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/userEvents")
-public class UserEventController {
+@RequestMapping("/v3/userEvents")
+public class UserEventsController {
 
     private final UserEventService userEventService;
 
     @Autowired
-    public UserEventController(UserEventService userEventService) {
+    public UserEventsController(UserEventService userEventService) {
         this.userEventService = userEventService;
     }
 
@@ -32,7 +28,6 @@ public class UserEventController {
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
     @GetMapping("/{userId}/{eventId}")
     public ResponseEntity<UserEvent> readById(
             @PathVariable Integer userId,
@@ -46,6 +41,7 @@ public class UserEventController {
         else
             return new ResponseEntity<>(userEventService.getById(id),HttpStatus.OK);
     }
+ 
 
     @GetMapping
     public ResponseEntity<List<UserEvent>> read (){

@@ -1,7 +1,6 @@
 package com.example.gilderNetcracker.controllers;
 
 import com.example.gilderNetcracker.model.Exercise;
-import com.example.gilderNetcracker.model.Training;
 import com.example.gilderNetcracker.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/exercises")
-public class ExerciseController {
+@RequestMapping("/v3/exercises")
+public class ExercisesController {
 
     private final ExerciseService exerciseService;
 
     @Autowired
-    public ExerciseController(ExerciseService exerciseService) {
+    public ExercisesController(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
     }
 
@@ -42,8 +41,6 @@ public class ExerciseController {
 
     @GetMapping
     public ResponseEntity<List<Exercise>> read(){
-        if(exerciseService.read().isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(exerciseService.read(),HttpStatus.OK);
     }
 

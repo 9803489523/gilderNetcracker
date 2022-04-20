@@ -1,7 +1,6 @@
 package com.example.gilderNetcracker.controllers;
 
 import com.example.gilderNetcracker.model.Event;
-import com.example.gilderNetcracker.model.Exercise;
 import com.example.gilderNetcracker.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,22 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v2/events")
-public class EventController {
+@RequestMapping("/v3/events")
+public class EventsController {
 
     private final EventService eventService;
 
     @Autowired
-    public EventController(EventService eventService) {
+    public EventsController(EventService eventService) {
         this.eventService = eventService;
     }
 
     @GetMapping
     public ResponseEntity<List<Event>> read(){
-        if(eventService.read().isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        else
-            return new ResponseEntity<>(eventService.read(),HttpStatus.OK);
+        return new ResponseEntity<>(eventService.read(),HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -61,5 +57,4 @@ public class EventController {
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
 }

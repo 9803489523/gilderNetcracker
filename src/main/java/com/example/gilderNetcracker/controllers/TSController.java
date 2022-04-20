@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/trainingsSet")
+@RequestMapping("/v3/trainingsSet")
 public class TSController {
 
     private final TSService tsService;
@@ -45,10 +45,7 @@ public class TSController {
 
     @GetMapping
     public ResponseEntity<List<TrainingSet>> read(){
-        if(tsService.read().isEmpty())
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        else
-            return new ResponseEntity<>(tsService.read(),HttpStatus.OK);
+        return new ResponseEntity<>(tsService.read(),HttpStatus.OK);
     }
 
     @PutMapping("/{trainingId}/{exerciseId}")
